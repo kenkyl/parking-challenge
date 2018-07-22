@@ -5,6 +5,12 @@ public class Rate {
 	private TimeLimit timeLimit; 
 	private int price;
 	
+	public Rate(String days, TimeLimit timeLimit, int price) {
+		this.days = days; 
+		this.timeLimit = timeLimit; 
+		this.price = price; 
+	}
+	
 	public String getDays() {
 		return days;
 	}
@@ -23,4 +29,8 @@ public class Rate {
 	public void setPrice(int price) {
 		this.price = price;
 	} 
+	@Override 
+	public String toString() {
+		return days + "\n" + timeLimit.toString() + "\n" + price; 
+	}
 }

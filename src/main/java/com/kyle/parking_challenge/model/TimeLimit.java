@@ -4,7 +4,13 @@ import java.util.Date;
 
 public class TimeLimit {
 	private Date startTime;
-	private Date endtime;
+	private Date endTime;
+	
+	public TimeLimit(Date startTime, Date endTime) {
+		this.startTime = startTime;
+		this.endTime = endTime;
+	}
+	
 	public Date getStartTime() {
 		return startTime;
 	}
@@ -12,9 +18,13 @@ public class TimeLimit {
 		this.startTime = startTime;
 	}
 	public Date getEndtime() {
-		return endtime;
+		return endTime;
 	}
 	public void setEndtime(Date endtime) {
-		this.endtime = endtime;
+		this.endTime = endtime;
 	} 
+	@Override 
+	public String toString() {
+		return startTime.toString() + " - " + endTime.toString(); 
+	}
 }
