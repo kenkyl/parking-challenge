@@ -11,6 +11,12 @@ public class Rate {
 		this.price = price; 
 	}
 	
+	public Rate() {
+		this.days = ""; 
+		this.timeLimit = new TimeLimit(); 
+		this.price = 0; 
+	}
+	
 	public String getDays() {
 		return days;
 	}
