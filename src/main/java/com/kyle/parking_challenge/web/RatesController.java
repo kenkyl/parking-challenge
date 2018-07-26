@@ -5,11 +5,14 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kyle.parking_challenge.model.Rate;
+import com.kyle.parking_challenge.model.RateList;
 import com.kyle.parking_challenge.service.*;
 
 @RestController
@@ -19,18 +22,19 @@ public class RatesController {
 	
 	@Autowired
 	RateService rateService; 
-
+	
 	@RequestMapping(value="/rates", method=RequestMethod.GET)
-	public List<Rate> getRates() {
+	public @ResponseBody RateList getRates() {
 		// retrieve rates 
 		logger.debug("Current Rate: " + rateService.getCurrentRates());
 		return rateService.getCurrentRates();
 	}
 	
 	@RequestMapping(value="/rates", method=RequestMethod.POST)
-	public void setRates() {
+	public void setRates(@RequestBody RateList newRates) {
 		// set rates
-		logger.debug("POST: " + rateService.getCurrentRates());
+		logger.debug("POST: " + newRates.getRates());
+		rateService.setCurrentRates(newRates);
 		return;
 	}
 }

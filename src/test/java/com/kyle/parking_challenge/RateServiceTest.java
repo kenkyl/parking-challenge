@@ -15,6 +15,7 @@ public class RateServiceTest {
 	
 	// declare objects for RateService testing
 	RateService rateService; 
+	RateList rateList; 
 	String days1; 
 	String days2;
 	String timeLimit1; 
@@ -32,29 +33,25 @@ public class RateServiceTest {
 		days2 = "wed,thurs,fri"; 
 		price1 = 1000; 
 		price2 = 1500; 
-		timeLimit1 = "0000-0000"; 
+		timeLimit1 = "0000-2300"; 
 		rate1 = new Rate(days1, timeLimit1, price1);
 		rate2 = new Rate(days2, timeLimit1, price2);
 		sampleList = new ArrayList<Rate>();
 		sampleList.add(rate1);
 		sampleList.add(rate2); 
-	}
-	
-	@Test
-	public void addRate() {
-		rateService.setCurrentRates(rate1);
-		assertEquals(rate1, rateService.getCurrentRates().get(0));
+		rateList = new RateList(sampleList); 
 	}
 	
 	@Test 
 	public void addRateList() {
-		rateService.setCurrentRates(sampleList);
-		assertEquals(sampleList, rateService.getCurrentRates()); 
+		rateService.setCurrentRates(rateList);
+		assertEquals(rateList, rateService.getCurrentRates()); 
+		assertEquals(rateList.getRates(), rateService.getCurrentRates().getRates()); 
 	}
 	
 	@Test 
 	public void clearRates() {
-		rateService.setCurrentRates(sampleList);
+		rateService.setCurrentRates(rateList);
 		rateService.clearRates();
 		assertEquals(0,rateService.getCurrentRates().size()); 
 	}

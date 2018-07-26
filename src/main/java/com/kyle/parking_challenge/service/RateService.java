@@ -1,12 +1,9 @@
 package com.kyle.parking_challenge.service;
 
-import java.util.List;
-
-import com.kyle.parking_challenge.model.Rate;
+import com.kyle.parking_challenge.model.RateList;
 
 public interface RateService {
-	public List<Rate> getCurrentRates(); 
-	public void setCurrentRates(List<Rate> newRates); 
-	public void setCurrentRates(Rate newRate); 
+	public RateList getCurrentRates(); 
+	public void setCurrentRates(RateList rateList); 
 	public void clearRates(); 
 }

@@ -9,13 +9,13 @@ public class TimeValidator implements ValidatorService<String> {
 	private static final String TIME24_PATTERN = "([01][0-9]|2[0-3])[0-5][0-9]";
 	private static final String INPUT_PATTERN = TIME24_PATTERN + "-" + TIME24_PATTERN; 
 	
-	
 	public boolean validate(String input) {
 		logger.debug("input: " + input);
 		if (input.isEmpty() || (!input.matches(INPUT_PATTERN)) || (!validateTimeRange(input))) return false;
 		else return true; 
 	}
 	
+	// validate that the end time is later than start time 
 	private boolean validateTimeRange(String range) {
 		int start, end; 
 		String[] times = range.split("-"); 
