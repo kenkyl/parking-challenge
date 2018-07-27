@@ -21,7 +21,7 @@ public class RatesController {
 	RateService rateService; 
 	
 	@RequestMapping(method=RequestMethod.GET, produces="application/json")
-	public @ResponseBody RateList getRates() {
+	public RateList getRates() {
 		// retrieve rates 
 		logger.debug("Current Rate: " + rateService.getRateList());
 		return rateService.getRateList();
@@ -32,6 +32,5 @@ public class RatesController {
 		// set rates
 		logger.debug("POST: " + newRates.getRates());
 		rateService.setRateList(newRates);
-		return;
 	}
 }
