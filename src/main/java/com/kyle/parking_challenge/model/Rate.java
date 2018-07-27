@@ -2,13 +2,19 @@ package com.kyle.parking_challenge.model;
 
 public class Rate {
 	private String days; 
-	private TimeLimit timeLimit; 
+	private String times; 
 	private int price;
 	
-	public Rate(String days, TimeLimit timeLimit, int price) {
+	public Rate(String days, String timeLimit, int price) {
 		this.days = days; 
-		this.timeLimit = timeLimit; 
+		this.times = timeLimit; 
 		this.price = price; 
+	}
+	
+	public Rate() {
+		this.days = ""; 
+		this.times = ""; 
+		this.price = 0; 
 	}
 	
 	public String getDays() {
@@ -17,11 +23,11 @@ public class Rate {
 	public void setDays(String days) {
 		this.days = days;
 	}
-	public TimeLimit getTimes() {
-		return timeLimit;
+	public String getTimes() {
+		return times;
 	}
-	public void setTimes(TimeLimit timeLimit) {
-		this.timeLimit = timeLimit;
+	public void setTimes(String times) {
+		this.times = times;
 	}
 	public int getPrice() {
 		return price;
@@ -31,6 +37,6 @@ public class Rate {
 	} 
 	@Override 
 	public String toString() {
-		return days + "\n" + timeLimit.toString() + "\n" + price; 
+		return days + "\n" + times + "\n" + price; 
 	}
 }

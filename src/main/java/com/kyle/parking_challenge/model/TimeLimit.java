@@ -10,6 +10,10 @@ public class TimeLimit {
 		this.startTime = startTime;
 		this.endTime = endTime;
 	}
+	public TimeLimit() {
+		this.startTime = new Date(); 
+		this.endTime = new Date(); 
+	}
 	
 	public Date getStartTime() {
 		return startTime;
