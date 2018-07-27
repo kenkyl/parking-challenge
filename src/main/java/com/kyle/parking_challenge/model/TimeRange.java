@@ -27,6 +27,6 @@ public class TimeRange {
 	} 
 	@Override 
 	public String toString() {
-		return start + " - " + end; 
+		return start + " to " + end; 
 	}
 }

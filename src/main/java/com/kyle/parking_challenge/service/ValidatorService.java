@@ -1,5 +1,7 @@
 package com.kyle.parking_challenge.service;
 
-public interface ValidatorService<T> {
-	public boolean validate(T input); 
+import com.kyle.parking_challenge.ValidateException;
+
+public interface ValidatorService {
+	public boolean validate(String input); 
 }
