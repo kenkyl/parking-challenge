@@ -1,7 +1,6 @@
 package com.kyle.parking_challenge.service;
 
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
 
 import javax.xml.bind.DatatypeConverter;
@@ -86,7 +85,8 @@ public class PriceCalculator implements PriceService {
 				// find time match 
 				String[] limits = item.getTimes().split("-"); 
 				logger.info("limits: " + Integer.parseInt(limits[0]) + " " + Integer.parseInt(limits[1]));
-				if (requestTime >= Integer.parseInt(limits[0]) && requestTime <= Integer.parseInt(limits[1])) {
+				// verify that time is fully within bounds
+				if (requestTime > Integer.parseInt(limits[0]) && requestTime < Integer.parseInt(limits[1])) {
 					return item; 
 				}
 			}
