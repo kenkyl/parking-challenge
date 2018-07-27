@@ -1,5 +1,6 @@
 package com.kyle.parking_challenge.spring;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,5 +17,10 @@ public class ServiceConfig {
 	@Bean
 	public PriceService getPriceService() {
 		return new PriceCalculator(); 
+	}
+	
+	@Bean(name="isoValidator") 
+	public ValidatorService getIsoValidator() {
+		return new IsoValidator(); 
 	}
 }
