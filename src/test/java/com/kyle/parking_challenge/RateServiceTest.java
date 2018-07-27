@@ -44,15 +44,15 @@ public class RateServiceTest {
 	
 	@Test 
 	public void addRateList() {
-		rateService.setCurrentRates(rateList);
-		assertEquals(rateList, rateService.getCurrentRates()); 
-		assertEquals(rateList.getRates(), rateService.getCurrentRates().getRates()); 
+		rateService.setRateList(rateList);
+		assertEquals(rateList, rateService.getRateList()); 
+		assertEquals(rateList.getRates(), rateService.getRateList().getRates()); 
 	}
 	
 	@Test 
 	public void clearRates() {
-		rateService.setCurrentRates(rateList);
-		rateService.clearRates();
-		assertEquals(0,rateService.getCurrentRates().size()); 
+		rateService.setRateList(rateList);
+		rateService.clearRateList();
+		assertEquals(0,rateService.getRateList().size()); 
 	}
 }

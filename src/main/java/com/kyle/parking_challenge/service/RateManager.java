@@ -13,15 +13,15 @@ public class RateManager implements RateService {
 		
 	}
 	
-	public RateList getCurrentRates() {
+	public RateList getRateList() {
 		return this.rateList;
 	}
 	
-	public void setCurrentRates(RateList rateList) {
+	public void setRateList(RateList rateList) {
 		this.rateList = rateList; 
 	}
 	
-	public void clearRates() {
+	public void clearRateList() {
 		this.rateList.clear();
 	}
 	

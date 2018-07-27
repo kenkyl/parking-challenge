@@ -12,4 +12,9 @@ public class ServiceConfig {
 	public RateService getRateService() {
 		return new RateManager();
 	}
+	
+	@Bean
+	public PriceService getPriceService() {
+		return new PriceCalculator(); 
+	}
 }
