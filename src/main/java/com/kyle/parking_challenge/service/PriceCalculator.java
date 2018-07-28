@@ -49,30 +49,30 @@ public class PriceCalculator implements PriceService {
 	private String priceLookup(Calendar start, Calendar end) {
 		Integer startHour, endHour, startMin, endMin; 
 		String startDay, endDay;
-		Rate rate; 
+		Rate rate1, rate2; 
 		// grab start time info 
 		startDay = start.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, new Locale("en")).toLowerCase(); 
 		startHour = start.get(Calendar.HOUR_OF_DAY);
 		startMin = start.get(Calendar.MINUTE); 
 		// check for start day match in rates list 
-		rate = findRate(startDay, concatTime(startHour, startMin)); 
-		if (rate == null) {
+		rate1 = findRate(startDay, concatTime(startHour, startMin)); 
+		if (rate1 == null) {
 			// unavailable --> return -1 
 			return "unavailable"; 
 		}
-		//logger.debug("**START INFO**: " + startDay + " " + startHourStr + " " + startDay + " " + startHour);
 		endDay = end.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, new Locale("en")).toLowerCase();  
 		endHour = end.get(Calendar.HOUR_OF_DAY);
 		endMin = end.get(Calendar.MINUTE); 
-		rate = findRate(endDay, concatTime(endHour, endMin)); 
-		if (rate == null) {
+		rate2 = findRate(endDay, concatTime(endHour, endMin));
+		// verify rates contiguous 
+		if (rate2 == null || rate2 != rate1) {
 			// unavailable --> return -1 
 			return "unavailable"; 
 		}
 		else {
 			// return price of matched rate
-			logger.info("Returning: " + rate.getPrice());
-			return String.valueOf(rate.getPrice()); 
+			logger.info("Returning: " + rate2.getPrice());
+			return String.valueOf(rate2.getPrice()); 
 		}
 	}
 	
