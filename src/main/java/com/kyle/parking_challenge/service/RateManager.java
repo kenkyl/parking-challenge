@@ -1,21 +1,26 @@
 package com.kyle.parking_challenge.service;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.kyle.parking_challenge.ValidateException;
 import com.kyle.parking_challenge.model.*;
 
 @Service
 public class RateManager implements RateService {
+	
+	@Autowired
+	@Qualifier("daysValidator")
+	ValidatorService daysValidator; 
+	@Autowired
+	@Qualifier("timeValidator")
+	ValidatorService timeValidator; 
 	// maintain a list of Rate objects
 	private RateList rateList;
-	private Map<String,Rate> rateMap; 
 	
 	public RateManager() {
 		rateList = new RateList(); 
-		rateMap = new HashMap<String,Rate>();
 	}
 	
 	public RateList getRateList() {
@@ -23,25 +28,25 @@ public class RateManager implements RateService {
 	}
 	
 	public void setRateList(RateList rateList) {
-		this.rateMap.clear(); 
+		if (rateList == null || rateList.getRates() == null || rateList.getRates().isEmpty()) {
+			throw new ValidateException("Cannot provide empty rate list"); 
+		}
+		for (Rate rate : rateList.getRates()) {
+			if (!daysValidator.validate(rate.getDays())) {
+				throw new ValidateException("Invalid days entry");  
+			}
+			else if (!timeValidator.validate(rate.getTimes())) {
+				throw new ValidateException("Invalid times entry"); 
+			}
+			else if (rate.getPrice() <= 0) {
+				throw new ValidateException("Invalid price entry");
+			}
+		}
 		this.rateList = rateList;
-		//this.updateMap(); 
 	}
 	
 	public void clearRateList() {
 		this.rateList.clear();
-		this.rateMap.clear(); 
 	}
-/*
-	public Map<String, Rate> getRateMap() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	private void updateMap() {
-		for (Rate item : rateList.getRates()) {
-			
-		}
-	}
-	*/
+
 }

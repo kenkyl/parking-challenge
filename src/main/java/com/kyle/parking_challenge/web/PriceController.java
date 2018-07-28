@@ -36,7 +36,7 @@ public class PriceController {
 			resp = e.getMessage(); 
 		} catch (Exception e) {
 			e.printStackTrace();
-			resp = "Error!"; 
+			resp = e.getMessage(); 
 		}
 		return resp; 
 	}

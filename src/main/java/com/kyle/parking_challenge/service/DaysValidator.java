@@ -3,8 +3,6 @@ package com.kyle.parking_challenge.service;
 import java.util.Arrays;
 import java.util.List;
 
-import com.kyle.parking_challenge.ValidateException;
-
 public class DaysValidator implements ValidatorService {
 
 	private static final List<String> DAYS = Arrays.asList("mon", "tues", "wed", "thurs", "fri", "sat", "sun"); 

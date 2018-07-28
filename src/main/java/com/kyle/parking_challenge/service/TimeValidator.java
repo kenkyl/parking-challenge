@@ -2,8 +2,6 @@ package com.kyle.parking_challenge.service;
 
 import org.apache.log4j.Logger;
 
-import com.kyle.parking_challenge.ValidateException;
-
 public class TimeValidator implements ValidatorService  {
 	final static Logger logger = Logger.getLogger(TimeValidator.class);
 

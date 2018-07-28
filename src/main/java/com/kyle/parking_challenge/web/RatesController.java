@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kyle.parking_challenge.ValidateException;
 import com.kyle.parking_challenge.model.RateList;
 import com.kyle.parking_challenge.service.*;
 
@@ -28,9 +28,18 @@ public class RatesController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public void setRates(@RequestBody RateList newRates) {
+	public String setRates(@RequestBody RateList newRates) {
+		String resp = "Success"; 
 		// set rates
 		logger.debug("POST: " + newRates.getRates());
-		rateService.setRateList(newRates);
+		try {
+			rateService.setRateList(newRates);
+		} catch (ValidateException e) {
+			resp = e.getMessage();
+		} catch (Exception e) {
+			e.printStackTrace(); 
+			resp = e.getMessage(); 
+		}
+		return resp; 
 	}
 }
